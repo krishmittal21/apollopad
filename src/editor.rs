@@ -16,7 +16,7 @@ impl Editor {
                         if c.is_control() {
                             println!("{:?}\r", c as u8);
                         } else {
-                            println!("{:?} ({}\r)", c as u8, c);
+                            println!("{:?} ({})\r", c as u8, c);
                         }
                     }
                     Key::Ctrl('q') => break,
@@ -26,7 +26,10 @@ impl Editor {
             }
         }
     }
+    pub fn default() -> Self {
+        Editor {}
+    }
 }
 fn die(e: std::io::Error) {
-    panic!(e);
+    panic!("{}", e);
 }
