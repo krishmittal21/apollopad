@@ -20,14 +20,14 @@ impl Editor {
                         }
                     }
                     Key::Ctrl('q') => break,
-                    _ => println!("{:?}\r", key),
+                    _ => println!("{key:?}\r"),
                 },
                 Err(err) => die(err),
             }
         }
     }
     pub fn default() -> Self {
-        Editor {}
+        Self {}
     }
 }
 fn die(e: std::io::Error) {
