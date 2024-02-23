@@ -110,7 +110,7 @@ impl Editor {
     fn draw_rows(&self) {
         let height = self.terminal.size().height;
         for row in 0..height - 1 {
-            Terminal::clear_screen();
+            Terminal::clear_current_line();
             if row == height / 3 {
                 self.draw_welcome_message();
             } else {
