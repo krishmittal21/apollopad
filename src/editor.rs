@@ -27,13 +27,7 @@ impl Editor {
         }
     }
     fn refresh_screen(&self) -> Result<(), std::io::Error> {
-        //print!("\x1b[2j"); escape sequence -> \x1b is the escape character or 27 in decimal. j
-        // -> to clear the screen 2-> argument that says clear the entire screen.
-        // https://vt100.net/docs/vt100-ug/chapter3.html
-        // termion allows to not write the escape sequence
-
-        //print!("{}{}", termion::clear::All, termion::cursor::Goto(1, 1)); // goto using escape
-        // sequence H command -> (row no, col no) at which to position the cursor, 1-based
+        Terminal::cursor_hide();
         Terminal::clear_screen();
         Terminal::cursor_position(0, 0);
         if self.should_quit {
@@ -42,6 +36,7 @@ impl Editor {
             self.draw_rows();
             Terminal::cursor_position(0, 0);
         }
+        Terminal::cursor_show();
         Terminal::flush()
     }
     fn process_keypress(&mut self) -> Result<(), std::io::Error> {
