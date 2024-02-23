@@ -78,13 +78,13 @@ impl Editor {
             Key::Up => y = y.saturating_sub(1),
             Key::Down => {
                 if y < height {
-                    y = y.saturating_add(1)
+                    y = y.saturating_add(1);
                 }
             }
             Key::Left => x = x.saturating_sub(1),
             Key::Right => {
                 if x < width {
-                    x = x.saturating_add(1)
+                    x = x.saturating_add(1);
                 }
             }
             Key::End => x = width,
@@ -97,14 +97,14 @@ impl Editor {
     }
 
     fn draw_welcome_message(&self) {
-        let mut welcome_message = format!("Apollo Pad -- version {}", VERSION);
+        let mut welcome_message = format!("Apollo Pad -- version {VERSION}");
         let width = self.terminal.size().width as usize;
         let len = welcome_message.len();
         let padding = width.saturating_sub(len) / 2;
         let spaces = " ".repeat(padding.saturating_sub(1));
-        welcome_message = format!("~{}{}", spaces, welcome_message);
+        welcome_message = format!("~{spaces}{welcome_message}");
         welcome_message.truncate(width);
-        println!("{}\r", welcome_message);
+        println!("{welcome_message}\r");
     }
 
     fn draw_rows(&self) {
@@ -112,7 +112,7 @@ impl Editor {
         for row in 0..height - 1 {
             Terminal::clear_screen();
             if row == height / 3 {
-                self.draw_welcome_message()
+                self.draw_welcome_message();
             } else {
                 println!("~\r");
             }
